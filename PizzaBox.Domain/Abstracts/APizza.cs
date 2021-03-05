@@ -1,13 +1,33 @@
 namespace PizzaBox.Domain.Abstracts
 {
-    enum PizzaSize {Small = 0, Medium = 1, Large = 2}
+    //enum PizzaSize {Small = 0, Medium = 1, Large = 2}
     public abstract class APizza
     {
-        PizzaSize pizzaSize;
-        private int numToppings;
-        public int NumToppings { get; set; }
+        //PizzaSize pizzaSize;
         
-        private string crustType;
-        public string CrustType { get; set; }
+        public List<Topping> Toppings { get; set; }
+        
+        public Size Size { get; set; }
+        
+        public Crust Crust { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public APizza()
+        {
+            PizzaFactory();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void PizzaFactory()
+        {
+            AddCrust();
+            AddSize();
+            AddToppings();
+        }
+        protected abstract void AddCrust();
+        protected abstract void AddSize();
+        protected abstract void AddToppings();
     }
 }

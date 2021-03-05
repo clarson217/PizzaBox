@@ -2,8 +2,8 @@ using PizzaBox.Domain.Abstracts;
 
 namespace PizzaBox.Domain.Models
 {
-    public class DetroitPizza : AStore
+    public class ChicagoPizzaStore : AStore
     {
-        
+        //Store location = Chicago
     }
 }
