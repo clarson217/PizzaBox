@@ -39,8 +39,8 @@ namespace PizzaBox.Domain.Models
                     address = streetNumber + ' ' + streetName
                         + "/n" + city + ", " + state + " " + zipcode;
                 }else{
-                    address = streetNumber + ' ' + streetName + ' ' + roomNumber +
-                        + "/n" + city + ", " + state + " " + zipcode;
+                    address = (streetNumber + ' ' + streetName + ' ' + roomNumber 
+                    + "/n" + city + ", " + state + " " + zipcode);
                 }
                 return address;
             }

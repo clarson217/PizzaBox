@@ -1,7 +1,11 @@
-
+using PizzaBox.Domain.Abstracts;
+using System.Collections.Generic;
 
 namespace PizzaBox.Domain.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Order
     {
         //Chooses the pizza type
@@ -11,6 +15,7 @@ namespace PizzaBox.Domain.Models
         //  Holds necessary customer info for the store
         //      Name, number, payment info, address
         //      Order total logistics
+        public List<APizza> MyProperty { get; set; }
         
     }
 }

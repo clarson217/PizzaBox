@@ -12,8 +12,8 @@ namespace PizzaBox.Client
         }
         public static void PlayWithStore()
         {
-            var storeSingleton = new StoreSingleton();
-            foreach(var store in storeSingleton.Stores)
+            
+            foreach(var store in StoreSingleton.Instance.Stores)
             {
                 Console.WriteLine(store);
             }

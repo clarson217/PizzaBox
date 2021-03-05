@@ -1,4 +1,4 @@
-namespace PizzaBox.Domain.Models
+namespace PizzaBox.Domain.Abstracts
 {
     /// <summary>
     /// Component info for pizza components

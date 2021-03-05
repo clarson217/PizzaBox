@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using PizzaBox.Domain.Models;
+
 namespace PizzaBox.Domain.Abstracts
 {
     //enum PizzaSize {Small = 0, Medium = 1, Large = 2}
