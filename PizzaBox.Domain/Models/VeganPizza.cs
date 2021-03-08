@@ -8,15 +8,30 @@ namespace PizzaBox.Domain.Models
         //Build a Vegan Pizza
         protected override void AddCrust()
         {
-            throw new System.NotImplementedException();
+            Crust = new Crust();
         }
         protected override void AddSize()
         {
-            throw new System.NotImplementedException();
+            Size = new Size();
         }
         protected override void AddToppings()
         {
-            throw new System.NotImplementedException();
+            Toppings = new List<Topping>
+            {
+                new Topping(),
+                new Topping(),
+                new Topping(),
+                new Topping()
+            };
+        }
+        public VeganPizza( string size, double sizeCost)
+        {
+            Crust = new Crust("Garlic-herb Crust, 0.0);
+            Size = new Size(size, sizeCost);
+            Toppings[0] = new Topping("Mushrooms", 0.0);
+            Toppings[1] = new Topping("Onions", 0.0);
+            Toppings[2] = new Topping("Green Peppers", 0.0);
+            Toppings[3] = new Topping("Cherry Tomatoes", 0.0);
         }
     }
 }
