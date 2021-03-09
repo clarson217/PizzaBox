@@ -6,23 +6,27 @@ namespace PizzaBox.Domain.Models
     
     public class MeatPizza : APizza
     {
-        protected override void AddCrust(string crustType, double crustCost)
+        
+
+        protected override void AddCrust(string crustType, double cost)
         {
-            Crust = new Crust(crustType, crustCost);
+            Crust = new Crust(crustType, cost);
         }
-        protected override void AddSize()
+        protected override void AddSize(string size, double cost)
         {
-            Size = new Size();
+            Size = new Size(size, cost);
         }
         protected override void AddToppings()
         {
+            
             Toppings = new List<Topping>
             {
-                new Topping(),
-                new Topping(),
-                new Topping(),
-                new Topping()
+                new Topping("", 0.0),
+                new Topping("", 0.0),
+                new Topping("", 0.0),
+                new Topping("", 0.0)
             };
+            
         }
         public MeatPizza(string crustType, double crustCost, string size, double sizeCost)
         {

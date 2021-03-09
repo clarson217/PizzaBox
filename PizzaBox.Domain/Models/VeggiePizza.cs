@@ -8,16 +8,17 @@ namespace PizzaBox.Domain.Models
     public class VeggiePizza : APizza
     {
         //Build a Veggie Pizza
-        protected override void AddCrust()
+        protected override void AddCrust(string crustType, double cost)
         {
-            Crust = new Crust();
+            Crust = new Crust(crustType, cost);
         }
-        protected override void AddSize()
+        protected override void AddSize(string size, double cost)
         {
-            Size = new Size();
+            Size = new Size(size, cost);
         }
         protected override void AddToppings()
         {
+            /*
             Toppings = new List<Topping>
             {
                 new Topping(),
@@ -25,6 +26,7 @@ namespace PizzaBox.Domain.Models
                 new Topping(),
                 new Topping()
             };
+            */
         }
         public VeggiePizza(string crustType, double crustCost, string size, double sizeCost)
         {

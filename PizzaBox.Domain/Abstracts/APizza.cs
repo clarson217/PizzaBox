@@ -25,12 +25,12 @@ namespace PizzaBox.Domain.Abstracts
         /// </summary>
         private void PizzaFactory()
         {
-            AddCrust();
-            AddSize();
+            AddCrust("crust", 0.0);
+            AddSize("size", 0.0);
             AddToppings();
         }
-        protected abstract void AddCrust();
-        protected abstract void AddSize();
+        protected abstract void AddCrust(string crustType, double cost);
+        protected abstract void AddSize(string size, double cost);
         protected abstract void AddToppings();
     }
 }

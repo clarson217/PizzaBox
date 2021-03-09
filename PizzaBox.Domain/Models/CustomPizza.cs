@@ -1,20 +1,23 @@
 using PizzaBox.Domain.Abstracts;
 using System.Collections.Generic;
+using System.IO;
+using System;
 
 namespace PizzaBox.Domain.Models
 {
     public class CustomPizza : APizza
     {
-        protected override void AddCrust()
+        protected override void AddCrust(string crustType, double cost)
         {
-            Crust = new Crust("Garlic-herb Crust");
+            Crust = new Crust(crustType, cost);
         }
-        protected override void AddSize()
+        protected override void AddSize(string size, double cost)
         {
-            Size = new Size();
+            Size = new Size(size, cost);
         }
         protected override void AddToppings()
         {
+            /*
             Toppings = new List<Topping>
             {
                 new Topping(),
@@ -22,15 +25,14 @@ namespace PizzaBox.Domain.Models
                 new Topping(),
                 new Topping()
             };
+            */
         }
-        public VeganPizza( string size, double sizeCost)
+        public CustomPizza()
         {
-            Crust = new Crust("Garlic-herb Crust, 0.0);
-            Size = new Size(size, sizeCost);
-            Toppings[0] = new Topping("Mushrooms", 0.0);
-            Toppings[1] = new Topping("Onions", 0.0);
-            Toppings[2] = new Topping("Green Peppers", 0.0);
-            Toppings[3] = new Topping("Cherry Tomatoes", 0.0);
+            //prompt user and get (with verification)
+            //size, crust type, and toppings (Loop through toppings menu until quit selection)
+            Console.WriteLine("What size is your custom pizza? (small, medium, or large)");
+
         }
     }
 }

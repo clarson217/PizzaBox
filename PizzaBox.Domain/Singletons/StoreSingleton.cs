@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using PizzaBox.Domain.Abstracts;
 using PizzaBox.Domain.Models;
 using System.IO;
-using System.Xml.Serialization;
 using PizzaBox.Storing;
+using System;
+using System.Xml.Serialization;
 
 namespace PizzaBox.Domain.Singletons
 {
@@ -37,7 +38,9 @@ namespace PizzaBox.Domain.Singletons
                 new DetroitPizzaStore() {Name = "Detroit Pizza"}
 
             };
-            var fs = new FileStorage();
+            //fs Could be wrong
+            FileSystem fs = new FileSystem();
+
             if(Stores == null)
             {
                 Stores = fs.ReadFromXML<AStore>().ToList();
