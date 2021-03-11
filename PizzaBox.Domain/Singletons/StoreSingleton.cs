@@ -5,6 +5,7 @@ using System.IO;
 using PizzaBox.Storing;
 using System;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace PizzaBox.Domain.Singletons
 {
@@ -30,19 +31,20 @@ namespace PizzaBox.Domain.Singletons
         private StoreSingleton()
         {
             
-            var stores = new List<AStore>
-            {
-                new FreddyPizzaStore() {Name = "freddy pizza"},
-                new NewYorkPizzaStore() {Name = "New York Pizza"},
-                new ChicagoPizzaStore() {Name = "Chicago Pizza"},
-                new DetroitPizzaStore() {Name = "Detroit Pizza"}
+            // var stores = new List<AStore>
+            // {
+            //     new FreddyPizzaStore() {Name = "freddy pizza"},
+            //     new NewYorkPizzaStore() {Name = "New York Pizza"},
+            //     new ChicagoPizzaStore() {Name = "Chicago Pizza"},
+            //     new DetroitPizzaStore() {Name = "Detroit Pizza"}
 
-            };
+            // };
             //fs Could be wrong
-            FileSystem fs = new FileSystem();
+            FileStorage fs = new FileStorage();
 
             if(Stores == null)
-            {
+            { 
+                
                 Stores = fs.ReadFromXML<AStore>().ToList();
             }
         }

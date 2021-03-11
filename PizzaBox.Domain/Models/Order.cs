@@ -16,6 +16,6 @@ namespace PizzaBox.Domain.Models
         //      Name, number, payment info, address
         //      Order total logistics
         public List<APizza> MyProperty { get; set; }
-        
+        public Order(){}
     }
 }

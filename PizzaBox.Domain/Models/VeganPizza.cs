@@ -28,7 +28,7 @@ namespace PizzaBox.Domain.Models
         }
         public VeganPizza( string size, double sizeCost)
         {
-            Crust = new Crust("Garlic-herb Crust, 0.0");
+            Crust = new Crust("Garlic-herb Crust", 0.0);
             Size = new Size(size, sizeCost);
             Toppings[0] = new Topping("Mushrooms", 0.0);
             Toppings[1] = new Topping("Onions", 0.0);

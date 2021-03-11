@@ -1,4 +1,5 @@
-using XUnit;
+using Xunit;
+using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Testing.Tests
 {
@@ -9,7 +10,7 @@ namespace PizzaBox.Testing.Tests
         {
             //sut == subject under test
             //Arrange
-            var sut = new ChicagoStore();
+            var sut = new ChicagoPizzaStore();
             var expected = "Chicago Store";
 
             //act
@@ -25,7 +26,7 @@ namespace PizzaBox.Testing.Tests
         {
             //sut == subject under test
             //Arrange
-            var sut = new ChicagoStore();
+            var sut = new ChicagoPizzaStore();
 
             //act
             var actual = sut.Name;

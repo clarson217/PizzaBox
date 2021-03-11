@@ -8,7 +8,15 @@ namespace PizzaBox.Domain.Models
         private string city;
         private string state;
         private int zipcode = 0;
-
+        public Address()
+        {
+            streetNumber = 0;
+            streetName = "";
+            roomNumber = 0;
+            city = "";
+            state = "";
+            zipcode = 0;
+        }
         public Address(int snum, string sname, string city, string state, int zipcode)
         {
             streetNumber = snum;
@@ -27,7 +35,7 @@ namespace PizzaBox.Domain.Models
             this.zipcode = zipcode;
         }
         
-        public string getAddress()
+        public string GetAddress()
         {
             
             if(streetNumber == 0 || string.IsNullOrEmpty(streetName) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(state) || zipcode == 0){

@@ -17,6 +17,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <ProjectReference Include="..\PizzaBox.Storing\PizzaBox.Storing.csproj" />
+    <ProjectReference Include="..\PizzaBox.Domain\PizzaBox.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
