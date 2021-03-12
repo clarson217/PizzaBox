@@ -53,5 +53,15 @@ namespace PizzaBox.Domain.Models
                 return address;
             }
         }
+        public override string ToString()
+        {
+            if(roomNumber == 0)
+            {
+                return (streetNumber + " " + streetName + "\n" + city + ", " + state + " " + zipcode);
+            }else{
+                return (streetNumber + " " + streetName + roomNumber + "\n" + city + ", " + state + " " + zipcode);
+            }
+            
+        }
     }
 }

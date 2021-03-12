@@ -45,6 +45,7 @@ namespace PizzaBox.Client
                     name = GetName();
 
                     customerAddress = CustomerAddress();
+                    
                     //start getting customer's order
                     done = true;
                 }else if(input.Equals("3")){
@@ -54,6 +55,7 @@ namespace PizzaBox.Client
                 }
             }while(!done);
             Console.WriteLine("Come back soon!");
+            System.Environment.Exit(1);
         }
         public static string GetName(){
             Console.WriteLine("What is the name for the order?");
@@ -67,19 +69,56 @@ namespace PizzaBox.Client
             Address address = new Address();
             if(readerSplitter.Length == 6)
             {
-                address = new Address(int.Parse(readerSplitter[0]), (readerSplitter[1] + ' ' + readerSplitter[2]), readerSplitter[3], readerSplitter[4], int.Parse(readerSplitter[5]));
+                address = new Address(int.Parse(readerSplitter[0]), (readerSplitter[1] + ' ' 
+                    + readerSplitter[2]), readerSplitter[3], readerSplitter[4], int.Parse(readerSplitter[5]));
             }else if(readerSplitter.Length == 7){
-                address = new Address(int.Parse(readerSplitter[0]), (readerSplitter[1] + ' ' + readerSplitter[2]), int.Parse(readerSplitter[3]), readerSplitter[4], readerSplitter[5], int.Parse(readerSplitter[6]));
+                address = new Address(int.Parse(readerSplitter[0]), (readerSplitter[1] + ' ' 
+                    + readerSplitter[2]), int.Parse(readerSplitter[3]), readerSplitter[4], readerSplitter[5], int.Parse(readerSplitter[6]));
             }else{
                 Console.WriteLine("Not a valid address");
             }
             return address;
         }
-        public static Order BuildOrder()
+        /// <summary>
+        /// Manages the order:
+        /// 1. Confirms whether to place or view order history
+        /// if(place order)
+        ///     Open a new order
+        ///     Confirm store
+        ///     build pizzas
+        ///     place and save the order
+        /// if(view order history)
+        ///     Retrieve orders matching their name
+        ///     print up to 10 previous orders
+        /// </summary>
+        /// <returns></returns>
+        public static Order OrderManager()
         {
-            Console.WriteLine("Would you like to:\n1. Place Order\n2. View Order History\n3. Quit");
+            
             Order order = new Order();
-            //some code...
+            bool doneWithManager = false;
+            do{
+                Console.WriteLine("Would you like to:\n1. Place Order\n2. View Order History\n3. Quit");
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        Console.WriteLine("Starting your order!");
+                        doneWithManager = !doneWithManager;
+                    break;
+                    case "2":
+                        Console.WriteLine("Retrieving Order History. . .");
+                        doneWithManager = !doneWithManager;
+                    break;
+                    case "3":
+                        Console.WriteLine("Have a nice day!");
+                        System.Environment.Exit(1);
+                        doneWithManager = !doneWithManager;
+                    break;
+                    default:
+                        Console.WriteLine("Not a valid input");
+                    break;
+      }
+            }while(!doneWithManager);
             //Order.cs needs work
             return order;
         }
