@@ -93,8 +93,7 @@ namespace PizzaBox.Client
         /// </summary>
         /// <returns></returns>
         public static Order OrderManager()
-        {
-            
+        { 
             Order order = new Order();
             bool doneWithManager = false;
             do{

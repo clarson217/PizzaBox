@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 
 namespace PizzaBox.Domain.Models
 {
@@ -8,7 +9,10 @@ namespace PizzaBox.Domain.Models
         //Give payment info
         private string customerName;
         public string CustomerName { get; set; }
-        private string customerAddress;
+        private Address customerAddress;
+        public Address CustomerAddress{ get; set; }
+        private List<Order> orderHistory;
+
         
     }
 }
