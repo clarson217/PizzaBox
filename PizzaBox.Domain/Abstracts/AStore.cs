@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace PizzaBox.Domain.Abstracts
 {
     [XmlInclude(typeof(ChicagoPizzaStore))]
-    [XmlInclude(typeof(FreddyPizzaStore))]
+    [XmlInclude(typeof(ChrisPizzaStore))]
     [XmlInclude(typeof(DetroitPizzaStore))]
     [XmlInclude(typeof(NewYorkPizzaStore))]
     public abstract class AStore
