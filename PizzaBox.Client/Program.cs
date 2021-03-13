@@ -24,8 +24,10 @@ namespace PizzaBox.Client
         {
             
             bool done = false;
+            bool isNewCustomer = false;
             string name;
             Address customerAddress = new Address();
+            
             do{
                 Console.WriteLine("Are you an existing customer? \n  1. Yes \n  2. No\n  3. Quit");
                 string input = Console.ReadLine();
@@ -43,6 +45,7 @@ namespace PizzaBox.Client
                 }else if(input.Equals("2")){
                     Console.WriteLine("Welcome new customer!");
                     name = GetName();
+                    isNewCustomer = true;
 
                     customerAddress = CustomerAddress();
                     
@@ -81,45 +84,52 @@ namespace PizzaBox.Client
         }
         /// <summary>
         /// Manages the order:
-        /// 1. Confirms whether to place or view order history
-        /// if(place order)
-        ///     Open a new order
-        ///     Confirm store
-        ///     build pizzas
-        ///     place and save the order
-        /// if(view order history)
-        ///     Retrieve orders matching their name
-        ///     print up to 10 previous orders
+        /// ift they are not a new customer:
+        ///     Confirms whether to place or view order history
+        ///         if(place order)
+        ///             Open a new order
+        ///             Confirm store
+        ///             build pizzas
+        ///              place and save the order
+        ///         if(view order history)
+        ///             Retrieve orders matching their name
+        ///             print up to 10 previous orders
+        /// If they are a new customer:
+        ///     Gathers customer information
         /// </summary>
         /// <returns></returns>
-        public static Order OrderManager()
+        public static Order OrderManager(bool isNewCustomer)
         { 
             Order order = new Order();
             bool doneWithManager = false;
-            do{
-                Console.WriteLine("Would you like to:\n1. Place Order\n2. View Order History\n3. Quit");
-                switch (Console.ReadLine())
-                {
-                    case "1":
-                        Console.WriteLine("Starting your order!");
-                        doneWithManager = !doneWithManager;
-                    break;
-                    case "2":
-                        Console.WriteLine("Retrieving Order History. . .");
-                        doneWithManager = !doneWithManager;
-                    break;
-                    case "3":
-                        Console.WriteLine("Have a nice day!");
-                        System.Environment.Exit(1);
-                        doneWithManager = !doneWithManager;
-                    break;
-                    default:
-                        Console.WriteLine("Not a valid input");
-                    break;
-      }
-            }while(!doneWithManager);
-            //Order.cs needs work
-            return order;
+            if(isNewCustomer){
+            
+                do{
+                    Console.WriteLine("Would you like to:\n1. Place Order\n2. View Order History\n3. Quit");
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            Console.WriteLine("Starting your order!");
+                        
+                            doneWithManager = true;
+                        break;
+                        case "2":
+                            Console.WriteLine("Retrieving Order History. . .");
+                            doneWithManager = true;
+                        break;
+                        case "3":
+                            Console.WriteLine("Have a nice day!");
+                            System.Environment.Exit(1);
+                            doneWithManager = true;
+                        break;
+                        default:
+                            Console.WriteLine("Not a valid input");
+                        break;
+                    }
+                }while(!doneWithManager);
+                //Order.cs needs work
+                return order;
+            }
         }
         public static Address ReadAddressFromXML()
         {

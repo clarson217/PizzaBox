@@ -14,6 +14,7 @@ namespace PizzaBox.Domain.Abstracts
     [XmlInclude(typeof(NewYorkPizzaStore))]
     public abstract class AStore
     {
+        private Address storeAddress;
         public List<Order> Orders { get; set; }
 
         public override string ToString()

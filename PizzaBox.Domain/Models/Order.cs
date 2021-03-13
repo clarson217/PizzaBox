@@ -15,7 +15,7 @@ namespace PizzaBox.Domain.Models
         //  Holds necessary customer info for the store
         //      Name, number, payment info, address
         //      Order total logistics
-        public List<APizza> MyProperty { get; set; }
+        public List<APizza> MyPizzas { get; set; }
         public Address OrderAddress { get; set; }
         public AStore PizzaStore { get; set; }
         public Order(){}

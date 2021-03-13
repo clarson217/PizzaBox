@@ -2,11 +2,10 @@ using PizzaBox.Domain.Abstracts;
 
 namespace PizzaBox.Domain.Models
 {
-    public class NewYorkPizzaStore : AStore
+    public class ChrisPizzaStore : AStore
     {
-        //Store location = New York
         public Address StoreAddress{ get; set; }
-        private string storeName = "New York Pizza Store";
+        private string storeName = "Chris' Pizza Store";
         public string StoreName{ get; private set; }
     }
 }
