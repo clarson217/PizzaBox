@@ -5,11 +5,15 @@ namespace PizzaBox.Domain.Models
     public class Size : APizzaComponent
     {
         public Size(string size, double cost){
-            if(size == "small" || size == "medium" || size == "large")
+            if (size == "small" || size == "medium" || size == "large")
             {
                 Name = size;
-                Price = cost;
             }
+            else
+            {
+                Name = "small";
+            }
+            Price = cost;
         }
     }
 }

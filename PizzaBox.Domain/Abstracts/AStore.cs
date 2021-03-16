@@ -12,29 +12,28 @@ namespace PizzaBox.Domain.Abstracts
     [XmlInclude(typeof(ChrisPizzaStore))]
     [XmlInclude(typeof(DetroitPizzaStore))]
     [XmlInclude(typeof(NewYorkPizzaStore))]
-    public abstract class AStore
+    public class AStore
     {
         private Address storeAddress;
+        public Address StoreAddress{ get; set; }
         public List<Order> Orders { get; set; }
 
         public override string ToString()
         {
-            return Name;
+            return name;
+        }
+        public string ToReceipt()
+        {
+            return (name + storeAddress.ToString());
         }
         private string name;
-        public string Name 
-        { 
-            get
-            {
-                return name;
-            }
-            set
-            {
-                if(!string.IsNullOrWhiteSpace(value))
-                {
-                    name = value;
-                }
-            }
+        public string GetName()
+        {
+            return name;
+        }
+        public void SetName(string storeName)
+        {
+            name = storeName;
         }
     }
 }

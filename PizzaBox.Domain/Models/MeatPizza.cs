@@ -8,34 +8,34 @@ namespace PizzaBox.Domain.Models
     {
         
 
-        protected override void AddCrust(string crustType, double cost)
-        {
-            Crust = new Crust(crustType, cost);
-        }
-        protected override void AddSize(string size, double cost)
-        {
-            Size = new Size(size, cost);
-        }
-        protected override void AddToppings()
+        // protected override void AddCrust(string crustType, double cost)
+        // {
+        //     crust = new Crust(crustType, cost);
+        // }
+        // protected override void AddSize(string size, double cost)
+        // {
+        //     this.size = new Size(size, cost);
+        // }
+        protected void AddToppings()
         {
             
-            Toppings = new List<Topping>
-            {
-                new Topping("", 0.0),
-                new Topping("", 0.0),
-                new Topping("", 0.0),
-                new Topping("", 0.0)
-            };
+            Topping temp = new Topping("Pepperoni", 0.0);
+            toppings.Add(temp);
+            temp = new Topping("Italian Sausage", 0.0);
+            toppings.Add(temp);
+            temp = new Topping("Ham", 0.0);
+            toppings.Add(temp);
+            temp = new Topping("Bacon", 0.0);
+            toppings.Add(temp);
             
         }
         public MeatPizza(string crustType, double crustCost, string size, double sizeCost)
         {
-            Crust = new Crust(crustType, crustCost);
-            Size = new Size(size, sizeCost);
-            Toppings[0] = new Topping("Pepperoni", 0.0);
-            Toppings[1] = new Topping("Italian Sausage", 0.0);
-            Toppings[2] = new Topping("Ham", 0.0);
-            Toppings[3] = new Topping("Bacon", 0.0);
+            AddCrust(crustType, crustCost);
+            AddSize(size, sizeCost);
+            AddToppings();
+            CalculatePizzaCost();
+            name = "Meat Lover's Pizza";
         }
         
     }

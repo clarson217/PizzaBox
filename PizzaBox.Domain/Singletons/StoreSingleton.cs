@@ -9,8 +9,10 @@ using System.Linq;
 
 namespace PizzaBox.Domain.Singletons
 {
+    
     public class StoreSingleton
     {
+        private readonly string _storePath = @"store.xml";
         private static StoreSingleton _storeSingleton;
         public List<AStore> Stores { get; set; }
         public static StoreSingleton Instance 
@@ -31,31 +33,27 @@ namespace PizzaBox.Domain.Singletons
         private StoreSingleton()
         {
             
-            // var stores = new List<AStore>
-            // {
-            //     new FreddyPizzaStore() {Name = "freddy pizza"},
-            //     new NewYorkPizzaStore() {Name = "New York Pizza"},
-            //     new ChicagoPizzaStore() {Name = "Chicago Pizza"},
-            //     new DetroitPizzaStore() {Name = "Detroit Pizza"}
+            var stores = new List<AStore>
+            {
+                 new ChrisPizzaStore(),
+                 new NewYorkPizzaStore(),
+                 new ChicagoPizzaStore(),
+                 new DetroitPizzaStore()
 
-            // };
+            };
             //fs Could be wrong
             FileStorage fs = new FileStorage();
 
             if(Stores == null)
             { 
                 
-                Stores = fs.ReadFromXML<AStore>().ToList();
+                try{
+                    Stores = fs.ReadFromXML<AStore>(_storePath).ToList();
+                }catch(Exception e){
+                    fs.WriteToXML(stores, _storePath);
+                    Stores = fs.ReadFromXML<AStore>(_storePath).ToList();
+                }
             }
         }
-        /*public static StoreSingleton GetInstance()
-        {
-            if(_storeSingleton == null)
-            {
-                _storeSingleton = new StoreSingleton();
-            }
-
-            return _storeSingleton;
-        }*/
     }
 }  

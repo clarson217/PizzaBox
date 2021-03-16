@@ -8,34 +8,32 @@ namespace PizzaBox.Domain.Models
     public class VeggiePizza : APizza
     {
         //Build a Veggie Pizza
-        protected override void AddCrust(string crustType, double cost)
+        // protected void AddCrust(string crustType, double cost)
+        // {
+        //     crust = new Crust(crustType, cost);
+        // }
+        // protected void AddSize(string size, double cost)
+        // {
+        //     this.size = new Size(size, cost);
+        // }
+        protected void AddToppings()
         {
-            Crust = new Crust(crustType, cost);
-        }
-        protected override void AddSize(string size, double cost)
-        {
-            Size = new Size(size, cost);
-        }
-        protected override void AddToppings()
-        {
-            /*
-            Toppings = new List<Topping>
-            {
-                new Topping(),
-                new Topping(),
-                new Topping(),
-                new Topping()
-            };
-            */
+            Topping temp = new Topping("Spinach", 0.0);
+            toppings.Add(temp);
+            temp = new Topping("Onions", 0.0);
+            toppings.Add(temp);
+            temp = new Topping("Olives", 0.0);
+            toppings.Add(temp);
+            temp = new Topping("Banana Peppers", 0.0);
+            toppings.Add(temp);
         }
         public VeggiePizza(string crustType, double crustCost, string size, double sizeCost)
         {
-            Crust = new Crust(crustType, crustCost);
-            Size = new Size(size, sizeCost);
-            Toppings[0] = new Topping("Spinach", 0.0);
-            Toppings[1] = new Topping("Onions", 0.0);
-            Toppings[2] = new Topping("Olives", 0.0);
-            Toppings[3] = new Topping("Banana Peppers", 0.0);
+            AddCrust(crustType, crustCost);
+            AddSize(size, sizeCost);
+            AddToppings();
+            CalculatePizzaCost();
+            name = "Veggie Pizza";
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using PizzaBox.Domain.Models;
 using PizzaBox.Domain.Singletons;
 using PizzaBox.Domain.Abstracts;
-
+using PizzaBox.Storing;
 
 namespace PizzaBox.Client
 {
@@ -331,17 +332,44 @@ namespace PizzaBox.Client
             Console.WriteLine("This pizza cost: $" + pizza.GetPizzaCost());
             return pizza;
         }
-        //!Not done, might not need
+
+        //!Not done
+        /**NEEDS VERIFICATION**/
         public static Customer ReadCustomerFromXML(string name)
         {
             Address address = new Address();
             Customer customer = new Customer(name, address);
-            //get customer from XML who's name matches
+            //create file storage
+            FileStorage fs = new FileStorage();
+            //open file path
+            // & create list of all customers
+            List<Customer> customers = new List<Customer>(fs.ReadFromXML<Customer>(customer._CustomerPath));
+            //find customer who's name matches the string
+            int index = customers.FindIndex(a => a.CustomerName == name);
+            //return matched customer
+            customer = customers[index];
+            
             return customer;
         }
         public static void InvalidInput()
         {
             Console.WriteLine("Not a valid input");
         }
+        public static void ReadOrderFromXML(string name)
+        {
+            
+            Order order = new Order();
+            
+            FileStorage fs = new FileStorage();
+            //fetch a list of all orders
+            List<Order> orders = new List<Order>(fs.ReadFromXML<Order>(order._OrderPath));
+            //compare and return the receipt for all orders who contain the customer's name.
+            foreach(Order anOrder in orders){
+                if(anOrder.GetCustomerName() == name)
+                {
+                    Console.WriteLine(anOrder.PrintReciept());
+                }
+            }          
+        }        
     }
 }

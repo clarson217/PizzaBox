@@ -14,7 +14,7 @@ namespace PizzaBox.Testing.Tests
             var expected = "Chicago Store";
 
             //act
-            var actual = sut.Name;
+            var actual = sut.StoreName;
 
             //assert
             Assert.Equal(expected, actual);
@@ -29,7 +29,7 @@ namespace PizzaBox.Testing.Tests
             var sut = new ChicagoPizzaStore();
 
             //act
-            var actual = sut.Name;
+            var actual = sut.StoreName;
 
             //assert
             Assert.Equal(expected, actual);
