@@ -364,7 +364,8 @@ namespace PizzaBox.Client
             //fetch a list of all orders
             List<Order> orders = new List<Order>(fs.ReadFromXML<Order>(order._OrderPath));
             //compare and return the receipt for all orders who contain the customer's name.
-            foreach(Order anOrder in orders){
+            foreach(Order anOrder in orders)
+            {
                 if(anOrder.GetCustomerName() == name)
                 {
                     Console.WriteLine(anOrder.PrintReciept());
