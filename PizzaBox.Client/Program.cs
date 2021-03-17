@@ -40,10 +40,10 @@ namespace PizzaBox.Client
                     //get customer name
                     name = GetName();
 
-                    /*customerAddress = ReadAddressFromXML(name);
-                     * !!!NEED TO WORK ON STORAGE!!!*/
-                    Customer customer = new Customer(name, customerAddress);
-                    OrderManager(true, customer);
+                    
+                    Customer customer = ReadCustomerFromXML(name);
+                    //OrderManager(bool isNewCustomer, Customer customer)
+                    OrderManager(false, customer);
                     ////retrieve Customer customer from XML
                     //customerAddress = ReadAddressFromXML();
 
@@ -56,6 +56,9 @@ namespace PizzaBox.Client
 
                     customerAddress = CustomerAddress();
                     Customer customer = new Customer(name, customerAddress);
+                    WriteCustomerToXML(customer);
+                    
+                    
                     OrderManager(true, customer);
 
                     done = true;
@@ -68,7 +71,9 @@ namespace PizzaBox.Client
             Console.WriteLine("Come back soon!");
             System.Environment.Exit(1);
         }
-        //done
+        
+
+
         public static string GetName(){
             Console.WriteLine("What is the name for the order?");
             return Console.ReadLine();
@@ -89,6 +94,56 @@ namespace PizzaBox.Client
                 do
                 {
                     Console.WriteLine("Would you like to:\n 1. Place Order\n 2. Quit");
+                    switch (Console.ReadLine())
+                    {
+                        
+                        case "1":
+                            Console.WriteLine("Starting your order!");
+                            bool hasNextPizza = true;
+                            string iWantAPizza = "1";
+                            do
+                            {
+                                if(iWantAPizza.Equals("1"))
+                                    order.AddPizza(MakePizza());
+                                Console.WriteLine("Would you like to add a pizza?\n 1. Yes\n 2. No");
+                                iWantAPizza = Console.ReadLine();
+                                switch(iWantAPizza)
+                                {
+                                    case "1":
+                                        break;
+                                    case "2":
+                                        hasNextPizza = false;
+                                        break;
+                                    default:
+                                        InvalidInput();
+                                        break;
+                                }
+                            }while(hasNextPizza);
+                            doneWithManager = true;
+                            Console.WriteLine(order.PrintReciept());
+                            WriteOrderToXML(order);
+                            break;
+                        //not done
+                        case "2":
+                            
+                            Console.WriteLine("Have a nice day!");
+                            System.Environment.Exit(1);
+                            doneWithManager = true;
+                            break;
+                        default:
+                            InvalidInput();
+                        break;
+                    }
+
+                } while (!doneWithManager);
+                
+            }
+            else
+            {
+            
+                do
+                {
+                    Console.WriteLine("Would you like to:\n 1. Place Order\n 2. View Order History\n 3. Quit");
                     switch (Console.ReadLine())
                     {
                         //not done
@@ -115,41 +170,13 @@ namespace PizzaBox.Client
                                 }
                             }while(hasNextPizza);
                             doneWithManager = true;
-                            break;
-                        //not done
-                        case "2":
-                            
-                            Console.WriteLine("Have a nice day!");
-                            System.Environment.Exit(1);
-                            doneWithManager = true;
-                            break;
-                        default:
-                            InvalidInput();
-                        break;
-                    }
-
-                } while (!doneWithManager);
-                Console.WriteLine(order.PrintReciept());
-                //Take from existing customer when finished with that part
-            }
-            else
-            {
-            
-                do
-                {
-                    Console.WriteLine("Would you like to:\n 1. Place Order\n 2. View Order History\n 3. Quit");
-                    switch (Console.ReadLine())
-                    {
-                        //not done
-                        case "1":
-                            Console.WriteLine("Starting your order!");
-                            order.AddPizza(MakePizza());
-                            doneWithManager = true;
+                            Console.WriteLine(order.PrintReciept());
+                            WriteOrderToXML(order);
                             break;
                         //not done
                         case "2":
                             Console.WriteLine("Retrieving Order History. . .");
-
+                            ReadOrderFromXML(customer.GetCustomerName());
                             doneWithManager = true;
                             break;
                         //done
@@ -163,8 +190,8 @@ namespace PizzaBox.Client
                         break;
                     }
                 } while (!doneWithManager);
-                //Order.cs needs work
-                //return order;
+                
+                
             }
         }
 
@@ -213,22 +240,7 @@ namespace PizzaBox.Client
             }
             return address;
         }
-        /// <summary>
-        /// Manages the order:
-        /// ift they are not a new customer:
-        ///     Confirms whether to place or view order history
-        ///         if(place order)
-        ///             Open a new order
-        ///             Confirm store
-        ///             build pizzas
-        ///              place and save the order
-        ///         if(view order history)
-        ///             Retrieve orders matching their name
-        ///             print up to 10 previous orders
-        /// If they are a new customer:
-        ///     Gathers customer information
-        /// </summary>
-        /// <returns></returns>
+ 
          
         //not done
         
@@ -304,24 +316,24 @@ namespace PizzaBox.Client
                 switch(input)
                 {
                     case "1":
-                        /*MeatPizza meatPizza*/ pizza = new MeatPizza(crustType, crustCost, size, sizeCost);
-                        //APizza pizza = meatPizza;
+                        pizza = new MeatPizza(crustType, crustCost, size, sizeCost);
+                        
                         done = true;
                         break;
                     case "2":
-                        /*VeganPizza veganPizza*/ pizza= new VeganPizza(crustType, crustCost, size, sizeCost);
-                        //APizza pizza = veganPizza;
+                        pizza= new VeganPizza(crustType, crustCost, size, sizeCost);
+                        
                         done = true;
                         break;
                     case "3":
-                        /*VeggiePizza veggiePizza*/ pizza = new VeggiePizza(crustType, crustCost, size, sizeCost);
-                        //APizza pizza = veggiePizza;
+                        pizza = new VeggiePizza(crustType, crustCost, size, sizeCost);
+                        
                         done = true;
                         break;
                     case "4":
-                        /*CustomPizza customPizza*/ pizza = new CustomPizza(crustType, crustCost, size, sizeCost);
+                        pizza = new CustomPizza(crustType, crustCost, size, sizeCost);
                         
-                        //APizza pizza = customPizza;
+                        
                         done = true;
                         break;
                     default:
@@ -333,6 +345,12 @@ namespace PizzaBox.Client
             return pizza;
         }
 
+        public static void InvalidInput()
+        {
+            Console.WriteLine("Not a valid input");
+        }
+
+
         //!Not done
         /**NEEDS VERIFICATION**/
         public static Customer ReadCustomerFromXML(string name)
@@ -343,7 +361,7 @@ namespace PizzaBox.Client
             FileStorage fs = new FileStorage();
             //open file path
             // & create list of all customers
-            List<Customer> customers = new List<Customer>(fs.ReadFromXML<Customer>(customer._CustomerPath));
+            List<Customer> customers = new List<Customer>(fs.ReadFromXML<Customer>(customer._GetCustomerPath()));
             //find customer who's name matches the string
             int index = customers.FindIndex(a => a.CustomerName == name);
             //return matched customer
@@ -351,10 +369,14 @@ namespace PizzaBox.Client
             
             return customer;
         }
-        public static void InvalidInput()
+        public static void WriteCustomerToXML(Customer customer)
         {
-            Console.WriteLine("Not a valid input");
+            FileStorage fs = new FileStorage();
+            List<Customer> customers = new List<Customer>();
+            customers.Add(customer);
+            fs.WriteToXML<Customer>(customers, customer._GetCustomerPath());
         }
+        
         public static void ReadOrderFromXML(string name)
         {
             
@@ -362,7 +384,7 @@ namespace PizzaBox.Client
             
             FileStorage fs = new FileStorage();
             //fetch a list of all orders
-            List<Order> orders = new List<Order>(fs.ReadFromXML<Order>(order._OrderPath));
+            List<Order> orders = new List<Order>(fs.ReadFromXML<Order>(order._GetOrderPath()));
             //compare and return the receipt for all orders who contain the customer's name.
             foreach(Order anOrder in orders)
             {
@@ -371,6 +393,12 @@ namespace PizzaBox.Client
                     Console.WriteLine(anOrder.PrintReciept());
                 }
             }          
+        }
+        public static void WriteOrderToXML(Order order)
+        {
+            FileStorage fs = new FileStorage();
+            List<Order> orders = new List<Order>(){order};
+            fs.WriteToXML<Order>(orders, order._GetOrderPath());
         }        
     }
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <MyPizzas>
+      <APizza xsi:type="CustomPizza">
+        <Toppings>
+          <Topping>
+            <Name>Pepperonni</Name>
+            <Price>0.5</Price>
+          </Topping>
+        </Toppings>
+        <PizzaCost>7.5</PizzaCost>
+        <ThisName>Custom Pizza</ThisName>
+        <ThisSize>
+          <Name>medium</Name>
+          <Price>6</Price>
+        </ThisSize>
+        <ThisCrust>
+          <Name>Cheese Stuffed</Name>
+          <Price>1</Price>
+        </ThisCrust>
+      </APizza>
+      <APizza xsi:type="VeganPizza">
+        <Toppings>
+          <Topping>
+            <Name>Mushrooms</Name>
+            <Price>0</Price>
+          </Topping>
+          <Topping>
+            <Name>Onions</Name>
+            <Price>0</Price>
+          </Topping>
+          <Topping>
+            <Name>Green Peppers</Name>
+            <Price>0</Price>
+          </Topping>
+          <Topping>
+            <Name>Cherry Tomatoes</Name>
+            <Price>0</Price>
+          </Topping>
+        </Toppings>
+        <PizzaCost>9</PizzaCost>
+        <ThisName>Vegan Pizza</ThisName>
+        <ThisSize>
+          <Name>medium</Name>
+          <Price>6</Price>
+        </ThisSize>
+        <ThisCrust>
+          <Name>Cheese Stuffed</Name>
+          <Price>1</Price>
+        </ThisCrust>
+      </APizza>
+    </MyPizzas>
+    <OrderCustomer>
+      <CustomerName>Chris Larson</CustomerName>
+      <CustomerAddress>
+        <StreetNumber>528</StreetNumber>
+        <StreetName>Church Street</StreetName>
+        <RoomNumber>0</RoomNumber>
+        <City>Toledo</City>
+        <State>OH</State>
+        <Zipcode>43605</Zipcode>
+      </CustomerAddress>
+    </OrderCustomer>
+    <PizzaStore xsi:type="NewYorkPizzaStore" />
+  </Order>
+</ArrayOfOrder>
