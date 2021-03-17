@@ -1,20 +1,27 @@
-using System.Collections.Generic;
 using PizzaBox.Domain.Models;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using System;
+using System.IO;
+using System.Runtime.Serialization;
 
 namespace PizzaBox.Domain.Abstracts
 {
+    [Serializable()]
+    [XmlInclude(typeof(MeatPizza))]
+    [XmlInclude(typeof(CustomPizza))]
+    [XmlInclude(typeof(VeganPizza))]
+    [XmlInclude(typeof(VeggiePizza))]
     //enum PizzaSize {Small = 0, Medium = 1, Large = 2}
     public class APizza
     {
         //PizzaSize pizzaSize;
-        protected double pizzaCost = 0.0;
-        protected string name = "";
-        protected List<Topping> toppings = new List<Topping>();
-        public List<Topping> Toppings { get; set; }
+        public double PizzaCost { get; set; }
+        public string ThisName { get; set; }
+        public List<Topping> Toppings = new List<Topping>();
         
-        protected Size size;
-        
-        protected Crust crust;
+        public Size ThisSize { get; set; }
+        public Crust ThisCrust { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -28,23 +35,23 @@ namespace PizzaBox.Domain.Abstracts
         
         protected void AddCrust(string crustType, double cost)
         {
-            crust = new Crust(crustType, cost);
+            ThisCrust = new Crust(crustType, cost);
         }
         protected void AddSize(string size, double cost)
         {
-            this.size = new Size(size, cost);
+            ThisSize = new Size(size, cost);
         }
         protected void CalculatePizzaCost()
         {
-            pizzaCost = (size.Price + (crust.Price) + (.5 * toppings.Count));
+            PizzaCost = (ThisSize.Price + (ThisCrust.Price) + (.5 * Toppings.Count));
         }
         public double GetPizzaCost()
         {
-            return pizzaCost;
+            return PizzaCost;
         }
         public override string ToString()
         {
-            return (size.Name + " "+ name + "\n" + crust.Name + "   " + pizzaCost);
+            return (ThisSize.Name + " "+ ThisName + "\n" + ThisCrust.Name + "   $" + PizzaCost);
         }
         //PizzaCost = (sizeCost + (crustCost * .7) + 1.0);
     }

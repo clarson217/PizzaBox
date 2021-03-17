@@ -51,7 +51,7 @@ namespace PizzaBox.Domain.Singletons
                     Stores = fs.ReadFromXML<AStore>(_storePath).ToList();
                 }catch(Exception e){
                     fs.WriteToXML(stores, _storePath);
-                    Stores = fs.ReadFromXML<AStore>(_storePath).ToList();
+                    Stores = stores;
                 }
             }
         }

@@ -15,5 +15,10 @@ namespace PizzaBox.Domain.Models
             }
             Price = cost;
         }
+        public Size()
+        {
+            Name = "";
+            Price = 0.0;
+        }
     }
 }

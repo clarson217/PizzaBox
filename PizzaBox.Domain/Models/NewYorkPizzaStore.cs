@@ -6,8 +6,10 @@ namespace PizzaBox.Domain.Models
     {
         //Store location = New York
         
-        private string storeName = "New York Pizza Store";
-        public string StoreName{ get; private set; }
-        private Address storeAddress = new Address(123, "Main Street", "New York City", "New York", 45123);
+        public NewYorkPizzaStore()
+        {
+            SetName("New York Pizza Store");
+            this.storeAddress = new Address(123, "Main Street", "New York City", "New York", 45123);
+        }
     }
 }

@@ -36,39 +36,39 @@ namespace PizzaBox.Domain.Models
                         {
                             case "1":
                                 Topping pepperonni = new Topping("Pepperonni", 0.50);
-                                toppings.Add(pepperonni);
+                                Toppings.Add(pepperonni);
                                 break;
                             case "2":
                                 Topping sausage = new Topping("Sausage", 0.50);
-                                toppings.Add(sausage);
+                                Toppings.Add(sausage);
                                 break;
                             case "3":
                                 Topping bacon = new Topping("Bacon", 0.50);
-                                toppings.Add(bacon);
+                                Toppings.Add(bacon);
                                 break;
                             case "4":
                                 Topping ham = new Topping("Ham", 0.50);
-                                toppings.Add(ham);
+                                Toppings.Add(ham);
                                 break;
                             case "5":
                                 Topping onions = new Topping("Onions", 0.50);
-                                toppings.Add(onions);
+                                Toppings.Add(onions);
                                 break;
                             case "6":
                                 Topping olives = new Topping("Olives", 0.50);
-                                toppings.Add(olives);
+                                Toppings.Add(olives);
                                 break;
                             case "7":
                                 Topping bananaPeppers = new Topping("Banana Peppers", 0.50);
-                                toppings.Add(bananaPeppers);
+                                Toppings.Add(bananaPeppers);
                                 break;
                             case "8":
                                 Topping tomatoes = new Topping("Tomatoes", 0.50);
-                                toppings.Add(tomatoes);
+                                Toppings.Add(tomatoes);
                                 break;
                             case "9":
                                 Topping spinach = new Topping("Spinach", 0.50);
-                                toppings.Add(spinach);
+                                Toppings.Add(spinach);
                                 break;
                             default:
                                 InvalidInput();
@@ -93,8 +93,14 @@ namespace PizzaBox.Domain.Models
             AddSize(size, sizeCost);
             AddToppings();
             CalculatePizzaCost();
-            name = "Custom Pizza";
+            ThisName = "Custom Pizza";
             
+        }
+        public CustomPizza()
+        {
+            AddCrust("Regular", 0.0);
+            AddSize("small", 0.0);
+            ThisName = "Custom Pizza";
         }
         
         private void InvalidInput()

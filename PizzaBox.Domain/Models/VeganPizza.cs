@@ -17,13 +17,13 @@ namespace PizzaBox.Domain.Models
         protected void AddToppings()
         {
             Topping temp = new Topping("Mushrooms", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Onions", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Green Peppers", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Cherry Tomatoes", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
         }
         public VeganPizza(string crustType, double crustCost, string size, double sizeCost)
         {
@@ -31,7 +31,13 @@ namespace PizzaBox.Domain.Models
             AddSize(size, sizeCost);
             AddToppings();
             CalculatePizzaCost();
-            name = "Vegan Pizza";
+            ThisName = "Vegan Pizza";
+        }
+        public VeganPizza()
+        {
+            AddCrust("Regular", 0.0);
+            AddSize("small", 0.0);
+            ThisName = "Vegan Pizza";
         }
     }
 }

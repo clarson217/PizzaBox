@@ -13,32 +13,26 @@ namespace PizzaBox.Storing
 
         public void WriteToXML<T>(List<T> data, string _path) where T : class
         {
-            using (StreamWriter writer = new StreamWriter(_path))
+            
+           
+            using (var writer = new StreamWriter(_path))
             {
-                try
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                var serializer = new XmlSerializer(typeof(List<T>));
+                serializer.Serialize(writer, data);
+            }
+            
+        }
 
-                    serializer.Serialize(writer, data);
-                }catch(Exception e){
 
-                }
-                
+        public IEnumerable<T> ReadFromXML<T>(string _path) where T : class
+        {
+            using (var reader = new StreamReader(_path))
+            {
+                var serializer = new XmlSerializer(typeof(List<T>));
+
+                return serializer.Deserialize(reader) as IEnumerable<T>;
             }
         }
-
-        public IEnumerable<T> ReadFromXML<T>(string _path)
-        {
-            using (StreamReader reader = new StreamReader(_path))
-            {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
-
-            return serializer.Deserialize(reader) as IEnumerable<T>;
-            }
-        }
-        public void ReadFromXML()
-        {
-
-        }
+        
     }
 }

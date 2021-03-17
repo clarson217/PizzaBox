@@ -1,13 +1,24 @@
 using PizzaBox.Domain.Abstracts;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using System;
+using System.IO;
+using System.Runtime.Serialization;
 
 namespace PizzaBox.Domain.Models
 {
+    [Serializable()]
     public class ChicagoPizzaStore : AStore
     {
         //Store location = Chicago
         
-        private string storeName = "Chicago Pizza Store";
-        public string StoreName{ get; private set; }
-        private Address storeAddress = new Address(231, "Main Street", "Chicago", "IL", 23451);
+       
+        
+        
+        public ChicagoPizzaStore()
+        {
+            SetName("Chicago Pizza Store");
+            this.storeAddress = new Address(231, "Main Street", "Chicago", "IL", 23451);
+        }
     }
 }

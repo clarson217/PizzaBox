@@ -14,7 +14,7 @@ namespace PizzaBox.Domain.Abstracts
     [XmlInclude(typeof(NewYorkPizzaStore))]
     public class AStore
     {
-        private Address storeAddress;
+        protected Address storeAddress;
         public Address StoreAddress{ get; set; }
         public List<Order> Orders { get; set; }
 
@@ -24,7 +24,7 @@ namespace PizzaBox.Domain.Abstracts
         }
         public string ToReceipt()
         {
-            return (name + storeAddress.ToString());
+            return (name + "\n" + storeAddress.ToString());
         }
         private string name;
         public string GetName()

@@ -19,13 +19,13 @@ namespace PizzaBox.Domain.Models
         protected void AddToppings()
         {
             Topping temp = new Topping("Spinach", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Onions", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Olives", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Banana Peppers", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
         }
         public VeggiePizza(string crustType, double crustCost, string size, double sizeCost)
         {
@@ -33,7 +33,13 @@ namespace PizzaBox.Domain.Models
             AddSize(size, sizeCost);
             AddToppings();
             CalculatePizzaCost();
-            name = "Veggie Pizza";
+            ThisName = "Veggie Pizza";
+        }
+        public VeggiePizza()
+        {
+            AddCrust("Regular", 0.0);
+            AddSize("small", 0.0);
+            ThisName = "Veggie Pizza";
         }
     }
 }

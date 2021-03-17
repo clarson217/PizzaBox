@@ -20,14 +20,20 @@ namespace PizzaBox.Domain.Models
         {
             
             Topping temp = new Topping("Pepperoni", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Italian Sausage", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Ham", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             temp = new Topping("Bacon", 0.0);
-            toppings.Add(temp);
+            Toppings.Add(temp);
             
+        }
+        public MeatPizza()
+        {
+            AddCrust("Regular", 0.0);
+            AddSize("small", 0.0);
+            ThisName = "Meat Lover's Pizza";
         }
         public MeatPizza(string crustType, double crustCost, string size, double sizeCost)
         {
@@ -35,7 +41,7 @@ namespace PizzaBox.Domain.Models
             AddSize(size, sizeCost);
             AddToppings();
             CalculatePizzaCost();
-            name = "Meat Lover's Pizza";
+            ThisName = "Meat Lover's Pizza";
         }
         
     }

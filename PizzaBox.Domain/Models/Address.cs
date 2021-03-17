@@ -1,65 +1,74 @@
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using System;
+using System.IO;
+using System.Runtime.Serialization;
+
 namespace PizzaBox.Domain.Models
 {
+    [Serializable()]
     public class Address
     {
-        private int streetNumber = 0;
-        private string streetName;
-        private int roomNumber = 0;
-        private string city;
-        private string state;
-        private int zipcode = 0;
+        
+        public int StreetNumber { get; set; }
+        public string StreetName { get; set; }
+        public int RoomNumber { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public int Zipcode { get; set; }
+        
         public Address()
         {
-            streetNumber = 0;
-            streetName = "";
-            roomNumber = 0;
-            city = "";
-            state = "";
-            zipcode = 0;
+            StreetNumber = 0;
+            StreetName = "";
+            RoomNumber = 0;
+            City = "";
+            State = "";
+            Zipcode = 0;
         }
         public Address(int snum, string sname, string city, string state, int zipcode)
         {
-            streetNumber = snum;
-            streetName = sname;
-            this.city = city;
-            this.state = state;
-            this.zipcode = zipcode;
+            StreetNumber = snum;
+            StreetName = sname;
+            City = city;
+            State = state;
+            Zipcode = zipcode;
         }
         public Address(int snum, string sname, int rnum, string city, string state, int zipcode)
         {
-            streetNumber = snum;
-            streetName = sname;
-            roomNumber = rnum;
-            this.city = city;
-            this.state = state;
-            this.zipcode = zipcode;
+            StreetNumber = snum;
+            StreetName = sname;
+            RoomNumber = rnum;
+            City = city;
+            State = state;
+            Zipcode = zipcode;
         }
         
-        public string GetAddress()
-        {
+        // public string GetAddress()
+        // {
             
-            if(streetNumber == 0 || string.IsNullOrEmpty(streetName) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(state) || zipcode == 0){
-                return "Address is not valid";
-            }else{
-                string address;
-                if(roomNumber == 0)
-                {
-                    address = streetNumber + ' ' + streetName
-                        + "/n" + city + ", " + state + " " + zipcode;
-                }else{
-                    address = (streetNumber + ' ' + streetName + ' ' + roomNumber 
-                    + "/n" + city + ", " + state + " " + zipcode);
-                }
-                return address;
-            }
-        }
+        //     if(StreetNumber == 0 || string.IsNullOrEmpty(StreetName) || string.IsNullOrEmpty(City) || string.IsNullOrEmpty(State) || Zipcode == 0){
+        //         return "Address is not valid";
+        //     }else{
+        //         string address;
+        //         if(RoomNumber == 0)
+        //         {
+        //             address = StreetNumber + ' ' + StreetName
+        //                 + "/n" + City + ", " + State + " " + Zipcode;
+        //         }else{
+        //             address = (StreetNumber + ' ' + StreetName + ' ' + RoomNumber 
+        //             + "/n" + City + ", " + State + " " + Zipcode);
+        //         }
+        //         return address;
+        //     }
+        // }
         public override string ToString()
         {
-            if(roomNumber == 0)
+            if(RoomNumber == 0)
             {
-                return (streetNumber + " " + streetName + "\n" + city + ", " + state + " " + zipcode);
+                return (StreetNumber + " " + StreetName + "\n" + City + ", " + State + " " + Zipcode);
             }else{
-                return (streetNumber + " " + streetName + roomNumber + "\n" + city + ", " + state + " " + zipcode);
+                return (StreetNumber + " " + StreetName + RoomNumber + "\n" +City + ", " + State + " " + Zipcode);
             }
             
         }
