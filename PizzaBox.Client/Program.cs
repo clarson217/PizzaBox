@@ -12,17 +12,7 @@ namespace PizzaBox.Client
 
         static void Main(string[] args)
         {
-            //global::System.Object PizzaStores = StoreSingleton.Instance;
             CustomerInteraction();
-        }
-
-        public static void PlayWithStore()
-        {
-            
-            foreach(var store in StoreSingleton.Instance.Stores)
-            {
-                Console.WriteLine(store);
-            }
         }
 
         public static void CustomerInteraction()
@@ -42,13 +32,10 @@ namespace PizzaBox.Client
 
                     
                     Customer customer = ReadCustomerFromXML(name);
+
                     //OrderManager(bool isNewCustomer, Customer customer)
                     OrderManager(false, customer);
-                    ////retrieve Customer customer from XML
-                    //customerAddress = ReadAddressFromXML();
-
-                    //verify correct information
-                    //get order
+                    
                     done = true;
                 }else if(input.Equals("2")){
                     Console.WriteLine("Welcome new customer!");
@@ -65,7 +52,7 @@ namespace PizzaBox.Client
                 }else if(input.Equals("3")){
                     done = true;
                 }else{
-                    Console.WriteLine("Not a valid input!");
+                    InvalidInput();
                 }
             }while(!done);
             Console.WriteLine("Come back soon!");
@@ -196,31 +183,7 @@ namespace PizzaBox.Client
         }
 
 
-        //needs work
-        public static AStore GetStore()
-        {
-            Console.WriteLine("What is the store for the order? \n1. Chris's Pizza\n2. Chicago Pizza\n3. Detroit Pizza\n4.New York Pizza");
-            string input = Console.ReadLine();
-            switch(input)
-            {
-                case "1":
-                    return new ChrisPizzaStore();
-                
-                case "2":
-                    return new ChicagoPizzaStore();
-                
-                case "3":
-                    return new DetroitPizzaStore();
-                
-                case "4":
-                    return new NewYorkPizzaStore();
-                
-                default:
-                    InvalidInput();
-                    break;
-            }
-            return new ChrisPizzaStore();
-        }
+
         //done
         public static Address CustomerAddress()
         {
@@ -399,6 +362,32 @@ namespace PizzaBox.Client
             FileStorage fs = new FileStorage();
             List<Order> orders = new List<Order>(){order};
             fs.WriteToXML<Order>(orders, order._GetOrderPath());
-        }        
+        }     
+
+
+        public static AStore GetStore()
+        {
+            Console.WriteLine("What is the store for the order? \n1. Chris's Pizza\n2. Chicago Pizza\n3. Detroit Pizza\n4.New York Pizza");
+            string input = Console.ReadLine();
+            switch(input)
+            {
+                case "1":
+                    return new ChrisPizzaStore();
+                
+                case "2":
+                    return new ChicagoPizzaStore();
+                
+                case "3":
+                    return new DetroitPizzaStore();
+                
+                case "4":
+                    return new NewYorkPizzaStore();
+                
+                default:
+                    InvalidInput();
+                    break;
+            }
+            return new ChrisPizzaStore();
+        }   
     }
 }
